@@ -132,6 +132,7 @@ text-align: center
 #pagination{
 	margin-top: auto
 }
+
 @media (max-width:1000px){
 #site main .products .product-card{
 	flex-basis:23%;
