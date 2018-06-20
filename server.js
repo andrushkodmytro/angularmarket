@@ -7,8 +7,8 @@ var bodyParser=require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
-var Product=require('./productShema');
-var Category=require('./categoryShema');
+var Product=require('./shemaMongoDB/productShema');
+var Category=require('./shemaMongoDB/categoryShema');
 
 app.get('/',function(req,res){
   res.sendFile(__dirname+'/index.html');
