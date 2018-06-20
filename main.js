@@ -1,16 +1,16 @@
 var mainApp=angular.module('mainApp',["cartApp","productApp","categoryApp"]);
 mainApp.controller('mainCtrl',function($scope,$http){
 	$scope.current={
-		view:"product.html",
+		view:"viewClient/product.html",
 		header:"Товари"
 
 	};
 	$scope.showCart=function(){
-		$scope.current.view="cart.html",
+		$scope.current.view="viewClient/cart.html",
 		$scope.current.header="Корзина"
 	};
 	$scope.showProducts=function(){
-		$scope.current.view="product.html",
+		$scope.current.view="viewClient/product.html",
 		$scope.current.header="Товари"
 	};
 
