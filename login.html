@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Login</title>
+	<script src="jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="share/bootstrap.css">
+	<link rel="stylesheet" href="login.css">
+	<script src="Login.js"></script>
+</head>
+<body>
+	<div class="container">
+    <div class="row">
+      <div class="col  d-flex justify-content-center">
+        <h2>My Chat</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+
+
+    <form method="POST" action="/login" id="login">
+  <div class="form-group">
+    <label for="user">User name</label>
+    <input type="text" name='username' class="form-control" id="user"  placeholder="User name">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name='password' placeholder="Password">
+  </div>
+	<input type="submit" class="btn btn-primary" value="Login"></input>
+	<input type="button" id="reg" class="btn btn-primary" value="Registration">
+</form>
+
+<form method="POST" action="/login" id="registration">
+  <div class="form-group">
+    <label for="user1">User name</label>
+		<input type="text" name='username' class="form-control" id="user1"  placeholder="User name">
+		
+	</div>
+	
+  <div class="form-group">
+	 
+		<label for="password">Password</label>
+		<input type="password" class="form-control" id="password1" name='password' placeholder="Password">
+	
+		<label for="password1">Confirm password</label>
+    <input type="password" class="form-control" id="password2" name='password1' placeholder="Password">
+
+	</div>
+	<input type="button" id="reg1" class="btn btn-primary" value="Registration">
+	<input type="button" id="cansel" class="btn btn-primary" value="Cansel"></input>
+	<small id="regerr" class="form-text text-danger ">Password not confirmed!!!</small>
+
+</form>
+      </div>
+    </div>
+
+    
+   
+   </div>
+	
+
+
+    
+</body>
+</html>
