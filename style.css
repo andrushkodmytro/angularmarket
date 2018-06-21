@@ -132,6 +132,9 @@ text-align: center
 #pagination{
 	margin-top: auto
 }
+.productadmin{
+	padding:10px 20px;
+}
 
 @media (max-width:1000px){
 #site main .products .product-card{

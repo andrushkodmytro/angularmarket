@@ -1,4 +1,4 @@
-var mainApp=angular.module('mainApp',["cartApp","productApp","categoryApp"]);
+var mainApp=angular.module('mainApp',["cartApp","productApp","categoryApp","adminApp"]);
 mainApp.controller('mainCtrl',function($scope,$http){
 	$scope.current={
 		view:"viewClient/product.html",
@@ -14,8 +14,16 @@ mainApp.controller('mainCtrl',function($scope,$http){
 		$scope.current.header="Товари"
 	};
 
+	$scope.showAdminProducts=function(){
+		$scope.current.view='viewAdmin/adminproducts.html',
+		$scope.current.header="Адмін"
+	}
 
-
+	$scope.current.admin={
+		products:"viewAdmin/addproducts.html",
+		categorys:"viewAdmin/categoryAdmin.html",
+		orders:"viewAdmin/orders.html"
+	}
 
 
 

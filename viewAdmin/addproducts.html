@@ -1,0 +1,76 @@
+<div class="productadmin">
+		<form action="#">
+				<h2>Форма для додавання товару в базу даних</h2>
+				<div class="form-group row">
+					<label for="name" class="col-sm-2 col-form-label">Виробник</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="name" placeholder="Виробник" ng-model="newProduct.name">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="model" class="col-sm-2 col-form-label">Модель</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="model" placeholder="Модель" ng-model="newProduct.model">
+					</div>
+				</div>	
+				<div class="form-group row">
+						<label for="price" class="col-sm-2 col-form-label">Ціна</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="price" placeholder="Ціна грн" ng-model="newProduct.price">
+						</div>
+				</div>
+				<div class="form-group row">
+						<label for="categorys" class="col-sm-2 col-form-label">Категорія</label>
+						<div class="col-sm-10">
+								<select class="form-control" id="categorys" >
+										<option ng-model="newProduct.category" ng-repeat='item in category'>{{item.name}}</option>
+								</select>
+						</div>
+						
+					</div>
+					
+					<div class="form-group row">
+							<label for="count" class="col-sm-2 col-form-label">Кількість товару</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="count" placeholder="Кількість товару" ng-model="newProduct.count">
+							</div>
+						</div>
+						<div class="form-group row">
+								<label for="path" class="col-sm-2 col-form-label">Назва зображення</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="path" placeholder="Назва зображення" ng-model="newProduct.path">
+								</div>
+							</div>	
+						<button type="button" class="btn btn-primary" ng-click="addProductAdmin()">{{button.add}}</button>	
+						<button type="button" class="btn btn-primary" ng-click="cansel()">{{button.cansel}}</button>	
+				</form>	
+		
+
+<table class="table table-striped cart__table">
+	<tr>
+		<td>Назва товару</td>
+		<td>Кількість</td>
+		<td>Категорія</td>
+		<td>Ціна</td>
+		<td>Зображення</td>
+		<td>Видалити</td>
+		<td>Редагувати</td>
+	</tr>
+	<tr ng-repeat="item in products" class="table-light">
+		<td>{{item.name}} {{item.model}}</td>
+		<td>
+			{{item.count}}
+		</td>
+		<td>{{item.category}}</td>
+
+
+
+		<td>{{item.price}}</td>
+		<td>{{item.path}}</td>
+		<td><button class="btn" ng-click="removeProduct(item)"><i class="fas fa-trash-alt" ></i></button></td>
+		<td><button class="btn" ng-click="editProduct(item)"><i class="fas fa-edit"></i></button></td>
+	</tr>
+</table>
+
+</div>
+		

@@ -1,12 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="mainApp">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Admin</title>
 </head>
-<body>
-	<h1>Admin</h1>
+	<script src="../share/angular.js"></script>
+	<script type="text/javascript" src="../modules/product.js"></script>
+	<script type="text/javascript" src="../modules/category.js"></script>
+	<script type="text/javascript" src="../modules/cart.js"></script>
+	<script type="text/javascript" src="../modules/admin.js"></script>
+	<script src="../modules/main.js"></script>
+	<script src="../jquery-3.3.1.min.js"></script>
+	<script src="../share/bootstrap.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../share/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="../style.css">
+<body ng-controller="mainCtrl" ng-init="showAdminProducts()">
+	<section id="site" ng-controller="productCtrl" >
+		<div ng-controller="cartCtrl">
+			<header class="hf" ng-controller="categoryCtrl">
+				<h1>{{current.header}}</h1>
+				<section class="sort">
+					<article class="item-sort">
+						<label>Категорія</label>
+						<select ng-model="selectCategory" ng-change="loadProducts(selectCategory)">
+							<option ng-repeat='item in category'>{{item.name}}</option>
+						</select>
+					</article>
+					<article class="item-sort">
+						<label>Сортування</label>
+						<select ng-model="sortSelect" ng-change="sortMas(sortSelect)">
+							<option>По спаданню</option>
+							<option>По зростанню</option>
+						</select>
+					</article>
+				</section>
+				<button ng-click="showCart()" class="btn btn__shop"><i class="fas fa-shopping-cart"></i>
+					<span class="badge badge-danger" ng-show="cart.length>0">{{cart.length}}</span></button>
+
+			</header>
+			<main ng-include="current.view" ng-controller="adminCtrl">
+				
+				
+			</main>
+
+			<footer class="hf">
+					Footer
+				
+			</footer>
+		</div>
+	</section>
+	
 </body>
 </html>

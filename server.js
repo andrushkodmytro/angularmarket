@@ -115,9 +115,27 @@ passport.serializeUser(
 	app.post('/login', auth);
 	app.get('/login', function(req, res){
 		res.sendFile(__dirname+'/login.html')
+	});
+	app.post('/addproduct', function(req,res){
+		var product=new Product(req.body);
+		product.save(function(err,result){
+			res.send(result)
+		})
+	});
+	app.post('/removeproduct',function(req,res){
+		Product.remove({_id:req.body._id},function(err,result){
+			res.send(result)
+		})
 	})
 
+	app.post('/editproduct',function(req,res){
+		console.log(req.body);
+		Product.update({_id:req.body._id},
+			{$set:req.body},function(err,result){
+			res.send(result)
+		});
 
+	})
 
 
  	
