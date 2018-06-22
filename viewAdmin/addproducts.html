@@ -1,30 +1,34 @@
 <div class="productadmin">
-		<form action="#">
+		<form action="#" novalidate name="myForm">
 				<h2>Форма для додавання товару в базу даних</h2>
 				<div class="form-group row">
 					<label for="name" class="col-sm-2 col-form-label">Виробник</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="name" placeholder="Виробник" ng-model="newProduct.name">
+						<input type="text" required class="form-control" name="name1" placeholder="Виробник" ng-model="newProduct.name">
+						<span ng-show="myForm.name1.$error.required && myForm.name1.$dirty">Поле не повинне бути пустим</span>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="model" class="col-sm-2 col-form-label">Модель</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="model" placeholder="Модель" ng-model="newProduct.model">
+						<input type="text" required   class="form-control" id="model" name="model" placeholder="Модель" ng-model="newProduct.model">
+						<span ng-show="myForm.model.$error.required && myForm.model.$dirty">Поле не повинне бути пустим</span>
 					</div>
 				</div>	
 				<div class="form-group row">
 						<label for="price" class="col-sm-2 col-form-label">Ціна</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="price" placeholder="Ціна грн" ng-model="newProduct.price">
+							<input type="text" required  class="form-control" id="price" name="price" placeholder="Ціна грн" ng-model="newProduct.price">
+							<span ng-show="myForm.price.$error.required && myForm.price.$dirty">Поле не повинне бути пустим</span>
 						</div>
 				</div>
 				<div class="form-group row">
-						<label for="categorys" class="col-sm-2 col-form-label">Категорія</label>
+						<label for="categorys"  class="col-sm-2 col-form-label">Категорія</label>
 						<div class="col-sm-10">
-								<select class="form-control" id="categorys" >
-										<option ng-model="newProduct.category" ng-repeat='item in category'>{{item.name}}</option>
+								<select class="form-control" id="categorys" name="category" ng-model="newProduct.category" required>
+										<option ng-repeat='item in onlycategory'>{{item.name}}</option>
 								</select>
+								<span ng-show="myForm.category.$error.required && myForm.category.$dirty">Поле не повинне бути пустим</span>
 						</div>
 						
 					</div>
@@ -32,16 +36,18 @@
 					<div class="form-group row">
 							<label for="count" class="col-sm-2 col-form-label">Кількість товару</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="count" placeholder="Кількість товару" ng-model="newProduct.count">
+								<input type="text" required class="form-control" id="count" name="count" placeholder="Кількість товару" ng-model="newProduct.count">
+								<span ng-show="myForm.count.$error.required && myForm.count.$dirty">Поле не повинне бути пустим</span>
 							</div>
 						</div>
 						<div class="form-group row">
-								<label for="path" class="col-sm-2 col-form-label">Назва зображення</label>
+								<label for="path"  class="col-sm-2 col-form-label">Назва зображення</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="path" placeholder="Назва зображення" ng-model="newProduct.path">
+									<input type="text" required class="form-control" id="path" name="path"  placeholder="Назва зображення" ng-model="newProduct.path">
+									<span ng-show="myForm.path.$error.required && myForm.path.$dirty">Поле не повинне бути пустим</span>
 								</div>
 							</div>	
-						<button type="button" class="btn btn-primary" ng-click="addProductAdmin()">{{button.add}}</button>	
+						<button type="button" class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="addProductAdmin()">{{button.add}}</button>	
 						<button type="button" class="btn btn-primary" ng-click="cansel()">{{button.cansel}}</button>	
 				</form>	
 		

@@ -136,6 +136,16 @@ text-align: center
 	padding:10px 20px;
 }
 
+form .ng-dirty.ng-valid{
+	background-color: lightgreen;
+}
+form .ng-dirty.ng-invalid{
+	background-color: lightpink;
+}
+form .ng-pristine{
+	background-color: lightblue;
+}
+
 @media (max-width:1000px){
 #site main .products .product-card{
 	flex-basis:23%;

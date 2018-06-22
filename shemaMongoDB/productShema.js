@@ -1,31 +1,30 @@
 var mongoose=require('./mongoose');
-var productSchema=new mongoose.Schema({
+var schemaProduct=new mongoose.Schema({
 	name:{
 		type:String,
-		require:true},
+		required:true
+	},
 	model:{
 		type:String,
 		unique:true,
-		require:true
-		},
+		required:true
+	},
+	category:{
+		type:String,
+		required:true
+	},
+	count:{
+		type:Number,
+		required:true
+	},
 	price:{
 		type:Number,
-		require:true
-		},
-	category:	{
+		required:true
+	},
+	path:{
 		type:String,
-		require:true
-		},
-		count:{
-		type:Number,
-		require:true
-		},
-		path:{
-		type:String,
-		require:true
-		}
-
-});
-var Product=mongoose.model("Product", productSchema);
+		required:true
+	}
+	})
+var Product=mongoose.model("Product",schemaProduct);
 module.exports=Product;
-
