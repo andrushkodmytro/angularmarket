@@ -1,5 +1,5 @@
 <div class="cart__wrap">
-		<button ng_click="showProducts()" class="btn">Назад</button> 
+		<button ng_click="showProducts()" class="btn btn-success">Назад</button> 
 		<table class="table table-striped cart__table">
 			<tr>
 				<td>Назва товару</td>
@@ -10,15 +10,13 @@
 			<tr ng-repeat="item in cart" class="table-light">
 				<td>{{item.name}} {{item.model}}</td>
 				<td>
-
+					<button class="btn" ng-click="minusCount(item)">
+						<i class="fa fa-minus" >
+						</i></button>
+					{{item.newCount}}
 					<button class="btn" ng-click="plusCount(item)">
 						<i class="fa fa-plus"></i>
 						</button>
-					{{item.newCount}}
-					<button class="btn" ng-click="minusCount(item)">
-						<i class="fa fa-minus" >
-							
-						</i></button>
 				</td>
 
 
@@ -28,4 +26,7 @@
 			</tr>
 		</table>
 		<div>Загальна сума :{{sumTotal()}}</div>
+		<button class="btn btn-success" ng-click="order()">
+			Оформити замовлення
+			</button>
 </div>

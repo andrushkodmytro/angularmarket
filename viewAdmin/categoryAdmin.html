@@ -1,1 +1,25 @@
-<h1>Category</h1>
+<div class="productadmin">
+	<form action="#" novalidate name="myForm">
+		<h2>Форма для додавання категорій</h2>
+		<div class="form-group row">
+			<label for="name" class="col-sm-2 col-form-label">Категорія</label>
+			<div class="col-sm-10">
+				<input type="text" required class="form-control" name="category" placeholder="Категорія" ng-model="newCategory.name">
+				<span ng-show="myForm.category.$error.required && myForm.category.$dirty">Поле не повинне бути пустим</span>
+			</div>
+		</div>
+	
+		
+				<button type="button" class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="addNewCategory()">{{button.add}}</button>	
+				<button type="button" class="btn btn-primary" ng-click="cansel()">{{button.cansel}}</button>	
+		</form>	
+	<table class="table table-striped cart__table">
+		<tr>
+			<td>Назва категорії</td>
+		</tr>
+		<tr ng-repeat="item in onlycategory" class="table-light">
+			<td>{{item.name}}</td>
+			
+		</tr>
+	</table>
+</div>

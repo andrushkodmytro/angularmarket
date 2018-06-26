@@ -44,8 +44,18 @@ module.controller('cartCtrl',function($scope,$http){
 			item.newCount--;
 			item.newPrice-=item.price;
 		}
+	};
+	$scope.count=1;
+	$scope.order=function(){
+		$scope.date=new Date();
+		
+		$scope.newOrder={orderNumber:$scope.count,products:$scope.cart};
+		$http.post('addorder',$scope.newOrder).then(function(data){
+			console.log(data)
+		})
+		$scope.count+=1;
+		$scope.cart=[];
 	}
-
 
 
 // функція додавання товару в корзину 

@@ -1,1 +1,25 @@
-<h1>Orders</h1>
+<table class="table table-striped cart__table">
+	<tr>
+		<td>Номер замовлення</td>
+		<td>Дана замовлення</td>
+		<td>Категорія</td>
+		<td>Ціна</td>
+		<td>Зображення</td>
+		<td>Видалити</td>
+		<td>Редагувати</td>
+	</tr>
+	<tr ng-repeat="item in orders" class="table-light">
+		<td>{{item.orderNumber}}</td>
+		<td>
+			{{item.data}}
+		</td>
+		<td>{{item.category}}</td>
+
+
+
+		<td>{{item.price}}</td>
+		<td>{{item.path}}</td>
+		<td><button class="btn" ng-click="removeProduct(item)"><i class="fas fa-trash-alt" ></i></button></td>
+		<td><button class="btn" ng-click="editProduct(item)"><i class="fas fa-edit"></i></button></td>
+	</tr>
+</table>

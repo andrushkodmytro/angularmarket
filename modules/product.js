@@ -122,5 +122,12 @@ $scope.setPage=function(pageNumber){
 		$scope.newProduct={};
 		$scope.loadProducts()
 	};
-
+	$scope.orders=[];
+	$scope.loadOrders=function(){
+		$http.get('/loadorders').then(function(data){
+			$scope.orders=data.data;
+			console.log($scope.orders)
+		})
+	};
+	$scope.loadOrders()
 })

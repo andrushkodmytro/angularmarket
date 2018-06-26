@@ -32,6 +32,7 @@ app.get('/loadcategory', function(req,res){
 var Product=require('./shemaMongoDB/productShema');
 var Category=require('./shemaMongoDB/categoryShema');
 var AdminUser=require('./shemaMongoDB/adminuser');
+var Order=require('./shemaMongoDB/order')
 
 var cookieParser=require('cookie-parser')();
 app.use(cookieParser);
@@ -136,8 +137,26 @@ passport.serializeUser(
 		});
 
 	})
-
-
- 	
+	app.post("/addcategory",function(req,res){
+		var category=new Category(req.body);
+		category.save(function(err,result){
+			res.send(result)
+		})
+	})
+	app.post('/addorder',function(req,res){
+		console.log(req.body)
+		var order=new Order(req.body);
+		order.save(function(err,result){
+			console.log(err);
+			console.log(result)
+			res.send(result)
+		})
+		
+	})
+ 	app.get('/loadorders',function(req,res){
+		 Order.find(function(err,result){
+			 res.send(result)
+		 })
+	 })
 app.listen(process.env.PORT||8080);
 console.log('run server!');
