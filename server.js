@@ -54,7 +54,7 @@ var FacebookStrategy=require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
     clientID: "169493947241604",
     clientSecret: "3b30369aa6cd0758fea81ec37748e228",
-    callbackURL: "https://angularmarket.herokuapp.com/auth/facebook/callback",
+    callbackURL: "http://localhost:8080/auth/facebook/callback",
     profileFields:["id","displayName","photos","emails"]
   },
   function(accessToken, refreshToken, profile, done) {
