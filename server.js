@@ -32,7 +32,8 @@ app.get('/loadcategory', function(req,res){
 var Product=require('./shemaMongoDB/productShema');
 var Category=require('./shemaMongoDB/categoryShema');
 var AdminUser=require('./shemaMongoDB/adminuser');
-var Order=require('./shemaMongoDB/order')
+var Order=require('./shemaMongoDB/order');
+var User=require('./shemaMongoDB/user.js')
 
 var cookieParser=require('cookie-parser')();
 app.use(cookieParser);
@@ -49,6 +50,34 @@ var passport=require('passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
+var FacebookStrategy=require('passport-facebook').Strategy;
+passport.use(new FacebookStrategy({
+    clientID: "169493947241604",
+    clientSecret: "3b30369aa6cd0758fea81ec37748e228",
+    callbackURL: "http://localhost:8080/auth/facebook/callback",
+    profileFields:["id","displayName","photos","email"]
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.find({ id: profile.id }, function (err, data) {
+      if(data.length==1)
+      	return done(null, {id:data[0]._id})
+      else{
+      	console.log(profile)
+      	var newUser=new User({
+      		'id':profile.id,
+      		"name":profile.displayName,
+      		"email":profile.emails[0].value||'',
+      		"picture":profile.photos[0].value||''
+      	});
+      	c
+      	newUser.save(function(err,user){
+      		return done(null,{id:user._id})
+      	})
+      }
+    })
+  }
+))
+ 
 //Stvoryuemo  passport lokal priyednuemo do passporta i relizuyemo logiku autrentyfikacii
 
 var LocalStrategy=require('passport-local').Strategy;
@@ -76,18 +105,34 @@ passport.serializeUser(
 )
  // pry vsih nastupnych zvernnennyah doservera vibuvayetsa dysserializaciya na osnovi danych sesiyi
  passport.deserializeUser(
- 	function(id, done){
+ 	function(user, done){
  		console.log("deserializeUser");
  		AdminUser.find({
- 			_id:id.id
+ 			_id:user.id
  		}, 
  		function(err, data){
  			console.log(data);
  			if(data.length==1)
- 				done(null, {user:data[0].user})
- 		})
+ 			return	done(null, {user:data[0].user})
+		 })
+		User.find({
+			_id:user.id
+		}, 
+		function(err, data){
+			// console.log(data);
+			if(data.length)
+			return	done(null, {user:data[0]})
+		})
 
  	})
+
+	app.get('/auth/facebook',
+	 passport.authenticate('facebook'));
+	
+ app.get('/auth/facebook/callback',
+	 passport.authenticate('facebook',
+		 {successRedirect:"/",
+		failureRedirect:"/"}));
 
 //zapusk autyntyfikacii na osnovi likalnli strategii z vidpovidnym redirekt
 	var auth=passport.authenticate(
@@ -158,5 +203,22 @@ passport.serializeUser(
 			 res.send(result)
 		 })
 	 })
+	 var multer=require('multer');
+	 var storage=multer.diskStorage({
+		 destination:function(req,file,cb){
+			 cb(null,'./img')},
+			 filename:function(req,file,cb){
+				 cb(null,file.originalname)
+			 }
+	 });
+	 var upload=multer({storage:storage})
+	 app.post('/uploadfile',upload.single('upl'),function(req,res){
+		 console.log(req);
+		 res.send(req.file.path)
+	 })
+	 app.get('/fbgetuser',function(req,res){
+		res.send(req.user)
+	})
+
 app.listen(process.env.PORT||8080);
 console.log('run server!');

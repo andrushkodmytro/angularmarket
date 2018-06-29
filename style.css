@@ -145,7 +145,37 @@ form .ng-dirty.ng-invalid{
 form .ng-pristine{
 	background-color: lightblue;
 }
-
+form .iframe .form-control{
+	background-color: lightblue;
+}
+iframe {
+	display: none;
+}
+.add__button{
+	margin-top:15px;
+}
+.card-header label{
+	padding-left:0;
+}
+.card-header{
+	background-color:lightgreen;
+	padding-left: 15px;
+	border:none;
+}
+.card{
+	border:none
+}
+.form-file{
+	padding-left:6px;
+}
+.input-group .custom-file-label{
+	padding-left:12px;
+}
+.custom-file label{
+	margin-bottom:0;
+	margin-right:15px;
+	text-align: center;
+}
 @media (max-width:1000px){
 #site main .products .product-card{
 	flex-basis:23%;

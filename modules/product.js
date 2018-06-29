@@ -1,4 +1,17 @@
 var module=angular.module('productApp',[]);
+module.directive('currentItem',function(){
+	return function(scope,element,attr){
+		element.on('load',function(e){
+			var path=e.target.contentDocument.body.innerHTML;
+			scope.$apply(function(){
+				scope.newProduct.path=path;
+			})
+			
+
+		})
+	}
+})
+
 module.controller('productCtrl',function($scope,$http){
 	$scope.products=[];
 	$scope.loadProducts=function(item){

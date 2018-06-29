@@ -24,6 +24,17 @@ mainApp.controller('mainCtrl',function($scope,$http){
 		categorys:"viewAdmin/categoryAdmin.html",
 		orders:"viewAdmin/orders.html"
 	}
+	$scope.fb_visuser=false;
+	$scope.fb_user={};
+	$scope.fb_GetUser=function(){
+		$http.get('/fbgetuser').then(function(data){
+			console.log(data.data);
+			if(data.data)
+			$scope.fb_user=data.data;
+			$scope.fb_visuser=true
+		})
+	}
+
 
 
 

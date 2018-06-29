@@ -40,18 +40,35 @@
 								<span ng-show="myForm.count.$error.required && myForm.count.$dirty">Поле не повинне бути пустим</span>
 							</div>
 						</div>
-						<div class="form-group row">
-								<label for="path"  class="col-sm-2 col-form-label">Назва зображення</label>
-								<div class="col-sm-10">
-									<input type="text" required class="form-control" id="path" name="path"  placeholder="Назва зображення" ng-model="newProduct.path">
-									<span ng-show="myForm.path.$error.required && myForm.path.$dirty">Поле не повинне бути пустим</span>
-								</div>
-							</div>	
-						<button type="button" class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="addProductAdmin()">{{button.add}}</button>	
-						<button type="button" class="btn btn-primary" ng-click="cansel()">{{button.cansel}}</button>	
+					
+					
 				</form>	
-		
-
+				<div class="card " id="card">
+					<div class="card-header row" >
+						<label for="file"  class="col-sm-2 col-form-label">Файл зображення</label>
+						<form method="post" name="form2" class="col-sm-10 form-file" novalidate enctype="multipart/form-data" action="/uploadfile" target="result">
+					 		<div class="input-group">
+									<div class="custom-file">
+											<input type="file" name="upl" class="custom-file-input" id="inputGroupFile01">
+											<label class="btn btn-success" for="inputGroupFile01">Choose file</label>	
+									</div>
+									<div class="input-group">
+											<input type="submit" value="Load file" class="btn btn-success">
+									</div>
+							</div>
+						</form>
+					</div>	
+					<div class="card-body iframe">
+						<input type="text" class="form-control " ng-model="newProduct.path">
+					</div>
+				</div>	
+				<iframe name="result" current-item></iframe>
+				<div class="add__button">
+					<button type="button" class="btn btn-primary" ng-disabled="myForm.$invalid" ng-click="addProductAdmin()">{{button.add}}</button>	
+					<button type="button" class="btn btn-primary" ng-click="cansel()">{{button.cansel}}</button>	
+	
+				</div>
+				
 <table class="table table-striped cart__table">
 	<tr>
 		<td>Назва товару</td>
