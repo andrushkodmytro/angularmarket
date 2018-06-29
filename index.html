@@ -21,7 +21,16 @@
 			<header class="hf" ng-controller="categoryCtrl">
 				<h1>{{current.header}}</h1>
 				<div>
-					<a href="/auth/facebook" class="btn btn-info"> <i class="fab fa-facebook-square fa-lg mr-2">Facebook</i></a>
+					{{fb_user.user.name}}
+				</div>
+				<div>
+				<img src="{{fb_user.user.photos}}" alt="">	
+				</div>
+				<div ng-show="fb_visuser">
+					<button class="btn btn-danger" ng-click="logOut()"><i class="fas fa-sign-out-alt"></i></button>
+				</div>
+				<div ng-hide="fb_visuser">
+					<a href="/auth/facebook" class="btn btn-info"> <i class="fab fa-facebook-square fa-lg mr-2"></i>Facebook</a>
 				</div>
 				<section class="sort">
 					<article class="item-sort">

@@ -28,17 +28,32 @@ mainApp.controller('mainCtrl',function($scope,$http){
 	$scope.fb_user={};
 	$scope.fb_GetUser=function(){
 		$http.get('/fbgetuser').then(function(data){
-			console.log(data.data);
-			if(data.data)
-			$scope.fb_user=data.data;
-			$scope.fb_visuser=true
+			if(data.data){
+				console.log("if")
+				$scope.fb_user=data.data;
+				$scope.fb_visuser=true
+			for(key in $scope.fb_user.user.photos[0][0] ){
+				console.log(key)
+			}
+			console.log($scope.fb_user.user)
+			}
+			else{
+				$scope.fb_visuser=false;
+				$scope.fb_user={}
+			}
+		
 		})
 	}
-
-
-
-
-
+	$scope.fb_GetUser()
+	console.log($scope.fb_visuser)
+	$scope.logOut=function(){
+		$http.get('/logout').then(function(data){
+			// $scope.fb_visuser=false;
+			// $scope.fb_user={}
+			$scope.fb_GetUser()
+		})
+	}
+	
 
 
 })

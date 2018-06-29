@@ -55,21 +55,22 @@ passport.use(new FacebookStrategy({
     clientID: "169493947241604",
     clientSecret: "3b30369aa6cd0758fea81ec37748e228",
     callbackURL: "http://localhost:8080/auth/facebook/callback",
-    profileFields:["id","displayName","photos","email"]
+    profileFields:["id","displayName","photos","emails"]
   },
   function(accessToken, refreshToken, profile, done) {
+		console.log(profile)
     User.find({ id: profile.id }, function (err, data) {
       if(data.length==1)
       	return done(null, {id:data[0]._id})
       else{
-      	console.log(profile)
+				
+      	
       	var newUser=new User({
       		'id':profile.id,
       		"name":profile.displayName,
-      		"email":profile.emails[0].value||'',
-      		"picture":profile.photos[0].value||''
+      		"accounts":profile.accounts,
+      		"photos":profile.photos[0].value||''
       	});
-      	c
       	newUser.save(function(err,user){
       		return done(null,{id:user._id})
       	})
@@ -87,7 +88,6 @@ passport.use(new LocalStrategy(function(username, password, done){
 		password:password
 	},
 	function(err,data){
-		console.log(data);
 		if(data.length){
 			return done(null, {id:data[0]._id, user:data[0].user}) //запис даних в обєкт сесії
 		}
@@ -218,7 +218,13 @@ passport.serializeUser(
 	 })
 	 app.get('/fbgetuser',function(req,res){
 		res.send(req.user)
-	})
+	});
+	app.get('/logout', function(req, res){
+		console.log(req.user)
+		req.logout();
+		console.log("req.user: "+req.user)
+		res.redirect('/');
+	});
 
 app.listen(process.env.PORT||8080);
 console.log('run server!');

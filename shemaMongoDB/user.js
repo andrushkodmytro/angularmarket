@@ -6,22 +6,22 @@ var schemaUser=new mongoose.Schema({
 		id:{
 			type:String,
 			unique:true,
-			required:true
+			// required:true
 		},
 		name:{
 			type:String,
 			unique:true,
-			required:true
+			// required:true
 		},
-		email:{
+		accounts:{
 			type:String,
 			unique:true,
-			required:true
+			// required:true
 		},
 		photos:{
 			type:String,
 			unique:true,
-			required:true
+			// required:true
 		}
 	
 
